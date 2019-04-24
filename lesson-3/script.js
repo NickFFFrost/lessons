@@ -69,7 +69,7 @@ function checkSavings () {
 }
 checkSavings();
 
-let optionalExpenses = {};
+
 function chooseOptExpenses () {
 
   let optionalExp;
@@ -78,7 +78,7 @@ function chooseOptExpenses () {
     optionalExp = prompt("Статья необязательных расходов?");
     if ( (typeof(optionalExp)) === 'string' && optionalExp != '' && optionalExp.length < 50) {
           console.log("done");
-          optionalExpenses[i+1] = optionalExp;
+          appData.optionalExpenses[i+1] = optionalExp;
     } else {
         i--;
     }
@@ -86,4 +86,4 @@ function chooseOptExpenses () {
 }
 chooseOptExpenses();
 
-console.log(optionalExpenses);
+console.log(appData.optionalExpenses);
