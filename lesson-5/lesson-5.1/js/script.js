@@ -8,7 +8,7 @@ let = tagBody = document.getElementsByTagName("body")[0],
       idPrompt = document.getElementById("prompt"),
       question = prompt("Как вы относитесь к технике Apple?");
 
-tagBody.style.backgroundImage = "url(../img/apple_true.jpg)";
+tagBody.style.backgroundImage = "url(./img/apple_true.jpg)";
 
 menu.insertBefore(menuElement[1], menuElement[3]);
 li.innerHTML = "Пятый элемент";
