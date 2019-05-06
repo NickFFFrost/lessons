@@ -20,7 +20,14 @@ let startBtn = document.getElementById("start"),
     choosePercent = document.querySelector(".choose-percent"),
     yearValue = document.querySelector(".year-value"),
     monthValue = document.querySelector(".month-value"),
-    dayValue = document.querySelector(".day-value");
+    dayValue = document.querySelector(".day-value"),
+    items1 = document.querySelector('#expenses_1'),
+    items2 = document.querySelector('#expenses_2'),
+    items3 = document.querySelector('#expenses_3'),
+    items4 = document.querySelector('#expenses_4'),
+    optionalexpenses1 = document.querySelector('#optionalexpenses_1'),
+    optionalexpenses2 = document.querySelector('#optionalexpenses_2'),
+    optionalexpenses3 = document.querySelector('#optionalexpenses_3');
 
 
 
@@ -50,8 +57,7 @@ confirmBtnOne.addEventListener("click", function(){
     let mandatoryExp = expensesItem[i].value,
         cost = +expensesItem[++i].value;
   
-    if ( (typeof(mandatoryExp)) === 'string' && (typeof(cost)) != null 
-          && mandatoryExp != '' && cost != '' && mandatoryExp.length < 50) {
+    if ( mandatoryExp != '' && mandatoryExp != null && mandatoryExp.length < 50 && cost != null && cost != '') {
           console.log("done");
           appData.expenses[mandatoryExp] = cost;
           OneDay = sum += cost;
@@ -62,6 +68,17 @@ confirmBtnOne.addEventListener("click", function(){
 
   expensesValue.textContent = sum;
 });
+
+for (let i = 0; i < expensesItem.length; i++){
+  confirmBtnOne.disabled = true;
+  expensesItem[i].addEventListener('input', function () {
+      if (items1.value != '' && items2.value != '' && items3.value != '' && items4.value != '') {
+        confirmBtnOne.disabled = false;
+      }
+  })
+}
+
+
 
 confirmBtnTwo.addEventListener("click", function(){
   let optionalExp;
@@ -78,28 +95,16 @@ confirmBtnTwo.addEventListener("click", function(){
   }     
 });
 
-
-confirmBtnOne.disabled = true;
-confirmBtnTwo.disabled = true;
-
-expensesItem.forEach(function (element, i) {
-    element.addEventListener('change', function () {
-        if (element.value == '') {
-          confirmBtnOne.disabled = true;
-        } else {
-          confirmBtnOne.disabled = false;
-        }
-    });
-});
-optionalexpensesItem.forEach(function (element, i) {
-  element.addEventListener('change', function () {
-      if (element.value == '') {
-        confirmBtnTwo.disabled = true;
-      } else {
+for (let i = 0; i < optionalexpensesItem.length; i++){
+  confirmBtnTwo.disabled = true;
+  optionalexpensesItem[i].addEventListener('input', function () {
+      if (optionalexpenses1.value != '' && optionalexpenses2.value != '' && optionalexpenses3.value != '') {
         confirmBtnTwo.disabled = false;
       }
-  });
-});
+  })
+}
+
+
 
 deemBtn.addEventListener("click", function(){
 
