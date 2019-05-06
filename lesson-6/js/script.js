@@ -74,9 +74,12 @@ for (let i = 0; i < expensesItem.length; i++){
   expensesItem[i].addEventListener('input', function () {
       if (items1.value != '' && items2.value != '' && items3.value != '' && items4.value != '') {
         confirmBtnOne.disabled = false;
+      } else {
+        confirmBtnOne.disabled = true;
       }
   })
 }
+
 
 
 
@@ -85,24 +88,17 @@ confirmBtnTwo.addEventListener("click", function(){
 
   for (let i = 0; i < optionalexpensesItem.length; i++) {
     optionalExp = optionalexpensesItem[i].value;
-    if ( (typeof(optionalExp)) === 'string' && optionalExp != '' && optionalExp.length < 50) {
-          console.log("done");
-          appData.optionalExpenses[i+1] = optionalExp;
-          optionalexpensesValue.textContent += appData.optionalExpenses[i] + " ";
+    if ( (typeof (optionalExp)) === 'string' && typeof (optionalExp) != '' && typeof (optionalExp) != null && optionalExp.length < 50)  {
+        console.log("done");
+        appData.optionalExpenses[i] = optionalExp;
     } else {
         i--;
     }
+    optionalexpensesValue.textContent += appData.optionalExpenses[i] + " ";
   }     
 });
 
-for (let i = 0; i < optionalexpensesItem.length; i++){
-  confirmBtnTwo.disabled = true;
-  optionalexpensesItem[i].addEventListener('input', function () {
-      if (optionalexpenses1.value != '' && optionalexpenses2.value != '' && optionalexpenses3.value != '') {
-        confirmBtnTwo.disabled = false;
-      }
-  })
-}
+
 
 
 
@@ -135,7 +131,7 @@ chooseIncome.addEventListener("input", function() {
 savings.addEventListener("click", function() {
   if (appData.savings == true) {
     appData.savings = false;
-  } else {
+  } else{
     appData.savings = true;
   }
 });
