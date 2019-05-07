@@ -81,6 +81,16 @@ for (let i = 0; i < expensesItem.length; i++){
   })
 }
 
+for (let i = 0; i < optionalexpensesItem.length; i++){
+  confirmBtnTwo.disabled = true;
+  optionalexpensesItem[i].addEventListener('input', function () {
+      if (optionalexpensesItem.value != '' && appData.budget > 0) {
+        confirmBtnTwo.disabled = false;
+      } else {
+        confirmBtnTwo.disabled = true;
+      }
+  })
+}
 
 
 confirmBtnTwo.addEventListener("click", function(){
