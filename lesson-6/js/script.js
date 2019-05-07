@@ -72,7 +72,7 @@ confirmBtnOne.addEventListener("click", function(){
 for (let i = 0; i < expensesItem.length; i++){
   confirmBtnOne.disabled = true;
   expensesItem[i].addEventListener('input', function () {
-      if (items1.value != '' && items2.value != '' && items3.value != '' && items4.value != '') {
+      if (items1.value != '' && items2.value != '' && items3.value != '' && items4.value != '' && appData.budget > 0) {
         confirmBtnOne.disabled = false;
       } else {
         confirmBtnOne.disabled = true;
@@ -80,6 +80,16 @@ for (let i = 0; i < expensesItem.length; i++){
   })
 }
 
+for (let i = 0; i < optionalexpensesItem.length; i++){
+  confirmBtnTwo.disabled = true;
+  optionalexpensesItem[i].addEventListener('input', function () {
+      if (optionalexpensesItem.value != '' && appData.budget > 0) {
+        confirmBtnTwo.disabled = false;
+      } else {
+        confirmBtnTwo.disabled = true;
+      }
+  })
+}
 
 
 
