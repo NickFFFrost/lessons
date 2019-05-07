@@ -55,24 +55,25 @@ confirmBtnOne.addEventListener("click", function(){
 
   for (let i = 0; i < expensesItem.length; i++) {
     let mandatoryExp = expensesItem[i].value,
-        cost = +expensesItem[++i].value;
+        cost = expensesItem[++i].value;
   
     if ( mandatoryExp != '' && mandatoryExp != null && mandatoryExp.length < 50 && cost != null && cost != '') {
           console.log("done");
           appData.expenses[mandatoryExp] = cost;
-          OneDay = sum += cost;
+          OneDay = sum += +cost;
     } else {
-        i--;
+      expensesValue.textContent = "Ошибка!!";
     }
+    expensesValue.textContent = sum;
   }  
-
-  expensesValue.textContent = sum;
 });
 
 for (let i = 0; i < expensesItem.length; i++){
   confirmBtnOne.disabled = true;
   expensesItem[i].addEventListener('input', function () {
-      if (items1.value != '' && items2.value != '' && items3.value != '' && items4.value != '') {
+      if (items1.value != '' && items2.value != '' && appData.budget > 0) {
+        confirmBtnOne.disabled = false;
+      } else if (items3.value != '' && items4.value != '') {
         confirmBtnOne.disabled = false;
       } else {
         confirmBtnOne.disabled = true;
@@ -82,24 +83,32 @@ for (let i = 0; i < expensesItem.length; i++){
 
 
 
-
 confirmBtnTwo.addEventListener("click", function(){
   let optionalExp;
-
+  optionalexpensesValue.textContent = ' ';
   for (let i = 0; i < optionalexpensesItem.length; i++) {
     optionalExp = optionalexpensesItem[i].value;
     if ( (typeof (optionalExp)) === 'string' && typeof (optionalExp) != '' && typeof (optionalExp) != null && optionalExp.length < 50)  {
         console.log("done");
         appData.optionalExpenses[i] = optionalExp;
+        optionalexpensesValue.textContent += appData.optionalExpenses[i] + " ";
     } else {
         i--;
     }
-    optionalexpensesValue.textContent += appData.optionalExpenses[i] + " ";
   }     
 });
 
 
-
+for (let i = 0; i < optionalexpensesItem.length; i++){
+  confirmBtnTwo.disabled = true;
+  optionalexpensesItem[i].addEventListener('input', function () {
+      if (optionalexpensesItem.value != '' && appData.budget > 0) {
+        confirmBtnTwo.disabled = false;
+      } else {
+        confirmBtnTwo.disabled = true;
+      }
+  })
+}
 
 
 deemBtn.addEventListener("click", function(){
