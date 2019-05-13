@@ -1,6 +1,15 @@
 window.addEventListener("DOMContentLoaded", function () {
   "use strict";
 
+let age = document.getElementById('age');
+
+function showUser(surname, name) {
+  alert("Пользователь " + surname + " " + name + ", его возраст " + this.value);
+}
+
+showUser.apply(age, ["Snow", "John"]);
+
+/*
   let tab = document.querySelectorAll(".info-header-tab"),
       info = document.querySelector(".info-header"),
       tabContent = document.querySelectorAll(".info-tabcontent");
@@ -112,5 +121,5 @@ close.addEventListener("click", function () {
 });
 
 
-
+*/
 });
