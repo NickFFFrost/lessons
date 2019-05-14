@@ -95,11 +95,27 @@ setClock ("timer", deadline);
 
 //modal
 
-let more = document.querySelector(".more"),
-    overlay = document.querySelector(".overlay"),
-    close = document.querySelector(".popup-close"),
-    descrBtn = document.getElementsByClassName("description-btn");
+let overlay = document.querySelector(".overlay");
 
+document.addEventListener("click", (event) => {
+
+  let target = event.target;
+  
+  if (target.classList == "description-btn" || target.classList == "more") {
+    overlay.style.display = "block";
+    target.classList.add("more-splash");
+    document.body.style.overflow = "hidden";
+  }
+  
+  if (target.classList == "popup-close") {
+    overlay.style.display = "none";
+    document.getElementsByClassName('more-splash')[0].classList.remove("more-splash");
+    document.body.style.overflow = "";
+  }
+
+});
+
+/*
   function openModal () {
     overlay.style.display = "block";
     this.classList.add("more-splash");
@@ -117,5 +133,5 @@ let more = document.querySelector(".more"),
   for (let i = 0; i < descrBtn.length; i++) {
     descrBtn[i].addEventListener("click", openModal);
   }
-
+*/
 });
