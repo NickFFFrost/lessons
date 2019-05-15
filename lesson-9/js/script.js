@@ -123,22 +123,5 @@ document.addEventListener("click", event => {
 
 });
 
-/*
-  function openModal () {
-    overlay.style.display = "block";
-    this.classList.add("more-splash");
-    document.body.style.overflow = "hidden";
-  }
-  more.addEventListener("click", openModal);
-  
-  function closeModal () {
-    overlay.style.display = "none";
-    more.classList.remove("more-splash");
-    document.body.style.overflow = "";
-  }
-  close.addEventListener("click", closeModal);
-  for (let i = 0; i < descrBtn.length; i++) {
-    descrBtn[i].addEventListener("click", openModal);
-  }
-*/
+
 });
