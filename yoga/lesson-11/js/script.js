@@ -141,8 +141,6 @@ document.addEventListener("click", event => {
       statusMessage.classList.add("status");
   
   let formSend = (element) =>{
-    element.addEventListener("submit", (event) => {
-      event.preventDefault();
       element.appendChild(statusMessage);
   
       let request = new XMLHttpRequest();
@@ -176,16 +174,28 @@ document.addEventListener("click", event => {
       for (let i = 0; i < contactFormInput.length; i++) {
         contactFormInput[i].value = "";
       }
-    });
-  };
-  formSend(form);
-  formSend(contactForm);
 
-  document.body.addEventListener('input', (event) => {
-    let target = event.target;
-    if (target.getAttribute('type') === 'tel') {
-      target.setAttribute("pattern", "[+]{1}[0-9]{11}");
+  };
+
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    formSend(form);
+  });
+  contactForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    formSend(contactForm);
+  });
+
+
+  document.body.addEventListener("input", event => {
+
+    if (event.target.getAttribute("type") === "tel") {
+      event.target.value = "+" + event.target.value.replace(/[^\d]/, "").slice(0, 11);
+      if (event.target.value.length == 1) {
+        event.target.value = "";
+      }
     }
+
   });
 
 });
