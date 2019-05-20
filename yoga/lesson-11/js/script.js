@@ -5,7 +5,7 @@ window.addEventListener("DOMContentLoaded", () => {
       info = document.querySelector(".info-header"),
       tabContent = document.querySelectorAll(".info-tabcontent");
 
-  function hideTabContent (a) {
+  let hideTabContent = (a) => {
     for (let i = a; i < tabContent.length; i++ ) {
       tabContent[i].classList.remove("show");
       tabContent[i].classList.add("hide");
@@ -13,7 +13,7 @@ window.addEventListener("DOMContentLoaded", () => {
   }
   hideTabContent(1);
 
-  function showTabContent (b) {
+  let showTabContent = (b) => {
     if (tabContent[b].classList.contains("hide")) {
       tabContent[b].classList.remove("hide");
       tabContent[b].classList.add("show");
@@ -39,7 +39,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
 let deadline = "2019-05-12";
 
-function getTimeRemaining (endtime) {
+let getTimeRemaining = (endtime) => {
   let t = Date.parse(endtime) - Date.parse(new Date()),
       seconds = Math.floor( (t / 1000) % 60 ),
       minutes = Math.floor( (t / 1000 / 60) % 60 ),
@@ -52,7 +52,8 @@ function getTimeRemaining (endtime) {
         "seconds" : seconds
       };
 };
-function setClock (id, endtime) {
+
+let setClock = (id, endtime) => {
   let timer = document.getElementById(id),
       hours = timer.querySelector(".hours"),
       minutes = timer.querySelector(".minutes"),
@@ -132,11 +133,7 @@ document.addEventListener("click", event => {
     failure: "Что-то пошло не так..."
   };
 
-  let form = document.querySelector(".main-form"),
-      contactForm = document.getElementById("form"),
-      popupFormInput = form.querySelector(".popup-form__input"),
-      contactFormInput = contactForm.getElementsByTagName("input"),
-      statusMessage = document.createElement("div");
+  let statusMessage = document.createElement("div");
       
       statusMessage.classList.add("status");
   
@@ -168,29 +165,23 @@ document.addEventListener("click", event => {
         }
       })
   
-      for (let i = 0; i < popupFormInput.length; i++) {
-        popupFormInput[i].value = "";
-      }
-      for (let i = 0; i < contactFormInput.length; i++) {
-        contactFormInput[i].value = "";
+      for (let i = 0; i < element.length; i++) {
+        element[i].value = "";
       }
 
   };
 
-  form.addEventListener("submit", (event) => {
+
+  document.addEventListener("submit", (event) => {
     event.preventDefault();
-    formSend(form);
-  });
-  contactForm.addEventListener("submit", (event) => {
-    event.preventDefault();
-    formSend(contactForm);
+    formSend(event.target);
   });
 
 
   document.body.addEventListener("input", event => {
 
     if (event.target.getAttribute("type") === "tel") {
-      event.target.value = "+" + event.target.value.replace(/[^\d]/, "").slice(0, 11);
+      event.target.value = "+" + event.target.value.replace(/[^0-9]/g, "").slice(0, 11);
       if (event.target.value.length == 1) {
         event.target.value = "";
       }
